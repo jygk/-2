@@ -7,7 +7,7 @@ void BubbleSort(int a[N])
 {
     int f, i, j;
     i = 1;
-    while (i < (N - 1))
+    while (i < N)
     {
         f = 0;
         j = 0;

@@ -7,8 +7,12 @@
 void Mas(int a[N])
 {
 	unsigned i;
-	for (i = 0; i < N; i++)
+	for (i = 0; i < N/2; i++)
 	{
-		a[i] = N - i;
+		a[i] = i;
+	}
+	for (i = N/2; i < N; i++)
+	{
+		a[i] = rand();
 	}
 }

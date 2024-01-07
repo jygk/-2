@@ -8,19 +8,13 @@ int main()
 {
     int Vart;
     double d;
-    int a[N], b[N];
-    int n;
+    int a[N];
     int maxdepth = 2 * log(N);
     setlocale(LC_ALL, "Russian");
     Mas(a);
-    cout << "Исходный массив с данными: \n";
-    /*for (unsigned i = 0; i < N; i++) {
-        cout << a[i] << ' ';
-        b[i] = a[i];
-    }*/
     cout << "\n";
     cout << "1. Сортировка выбором\n2. Сортировка вставками\n3. Сортировка пузырьком\n4. Сортировка слиянием\n5. Быстрая сортировка\n6. Сортировка Шелла\n";
-    cout << "7. Пирамидальная сортировка\n8. Timsort\n9. IntroSort\n \n";
+    cout << "7. Пирамидальная сортировка\n8. Timsort\n9. IntroSort\n10. Шеллсорт с шагом Гиббарда\n11. Шеллсорт с шагом Пратта\n \n";
     cout << "Введите номер функции: \n";
     cin >> Vart;
     switch (Vart) {
@@ -39,7 +33,7 @@ int main()
         cout << clock() - d << "\n"; break;
     case 4: d = clock();
         cout << d << "\n";
-        MergeSort(a, b, 0, (N - 1));
+        MergeSort(a, 0, N);
         cout << clock() - d << "\n"; break;
     case 5: d = clock(); 
         cout << d << "\n";
@@ -59,13 +53,17 @@ int main()
         cout << clock() - d << "\n"; break;
     case 9: d = clock();
         cout << d << "\n";
-        IntroSort(a, 0, N, maxdepth - 1); 
+        IntroSort(a, a, a + N - 1, maxdepth); 
+        cout << clock() - d << "\n"; break;
+    case 10: d = clock();
+        cout << d << "\n";
+        ShellSortHibb(a, 0, (N-1));
         cout << clock() - d << "\n"; break;
     default: cout << "Не существует соответствующей функции. \n";
         break;
     }
-    cout << "\n";
-   /* for (unsigned i = 0; i < N; i++)
+   cout << "\n";
+   for (unsigned i = 0; i < N; i++)
         cout << a[i] << ' ';
-    cout << "\n";*/
+    cout << "\n";
 }

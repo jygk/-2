@@ -6,18 +6,19 @@ using namespace std;
 void HeapSort(int a[N], int l, int r)
 {
     int j, Size;
-    for (j = (r/2-1); j>=l; j--)
+    for (j = (r/2)-1; j>=l; j--)
         Heapify(a, j, r);
     Size = r;
-    while (Size > 2)
+    while (Size >= 2)
     {
         swap(a[l], a[Size - 1]);
         Size--;
         if (Size > 2)
             SiftDown(a, Size);
+        else
+            if (a[l] > a[l+1])
+                swap(a[l], a[l + 1]);
     }
-    if (a[l] > a[l+1])
-        swap(a[l], a[l+1]);
 }
 void Heapify(int a[N], int j, int n)
 {
@@ -42,9 +43,9 @@ void SiftDown(int a[N], int Size)
     {
         l = 2 * i + 1;
         r = 2 * i + 2;
-        if (a[i] < a[l])
+        if ((a[i] < a[l])&&(l < Size))
         {
-            if (a[l] < a[r])
+            if ((a[l] < a[r])&&(r < Size))
             {
                 swap(a[i], a[r]);
                 i = r;
@@ -56,7 +57,7 @@ void SiftDown(int a[N], int Size)
             }
         }
         else
-            if (a[i] < a[r])
+            if ((a[i] < a[r]) && (r < Size))
             {
                 swap(a[i], a[r]);
                 i = r;

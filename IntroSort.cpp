@@ -28,17 +28,17 @@ int randPartition(int a[N], int l, int r)
     return partition(a, l, r);
 }
 
-void IntroSort(int a[N], int l, int r, int maxdepth)
+void IntroSort(int a[N], int *beg, int *en, int maxdepth)
 {
-    if ((r - l) < 16) {
-        InsertionSort(a, l, r);
+    if ((en - beg) < 16) {
+        InsertionSort(a, beg - a, en - a);
     }
     else if (maxdepth == 0) {
-        HeapSort(a, l, r);
+        HeapSort(a, *beg, *en + 1);
     }
     else {
-        int pivot = randPartition(a, l, r);
-        IntroSort(a, l, l + pivot - 1, maxdepth - 1);
-        IntroSort(a, l + pivot + 1, r, maxdepth - 1);
+        int pivot = randPartition(a, beg - a, en - a);
+        IntroSort(a, beg, beg + pivot, maxdepth - 1);
+        IntroSort(a, a + pivot + 1, en + 1, maxdepth - 1);
     }
 }
